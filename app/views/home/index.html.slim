@@ -1,0 +1,5 @@
+header.header
+  - if logged_in?
+    = link_to 'ログアウト', logout_path
+  - else
+    a[href="/auth/twitter"] ログイン
