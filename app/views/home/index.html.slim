@@ -2,4 +2,4 @@ header.header
   - if logged_in?
     = link_to 'ログアウト', logout_path
   - else
-    a[href="/auth/twitter"] ログイン
+    = link_to "Connect Twitter", "/auth/twitter", method: :post

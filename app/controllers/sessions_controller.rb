@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  include SessionsHelper
+
   def create
     unless request.env['omniauth.auth'][:uid]
       flash[:danger] = '連携に失敗しました'
@@ -17,7 +19,7 @@ class SessionsController < ApplicationController
         name: user_data[:info][:name],
         statuses_count: user_data[:extra][:raw_info][:statuses_count],
         registered_at: Date.parse(user_data[:extra][:raw_info][:created_at])
-        )
+      )
       if new_user.save
         log_in new_user
         flash[:success] = 'ユーザー登録成功'
@@ -27,7 +29,6 @@ class SessionsController < ApplicationController
       redirect_to root_url
     end
   end
-
 
   def destroy
     log_out if logged_in?

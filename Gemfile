@@ -28,10 +28,10 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'dotenv-rails'
 gem 'html2slim'
 gem 'omniauth-twitter'
 gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
 gem 'slim-rails'
 
 group :development, :test do
