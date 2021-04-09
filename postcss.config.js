@@ -13,16 +13,4 @@ let environment = {
     ]
 }
 
-if (process.env.RAILS_ENV === "production") {
-    environment.plugins.push(
-        require('@fullhuman/postcss-purgecss')({
-            content: [
-                './tmp/*.html.erb',
-                './app/helpers/**/*.rb',
-            ],
-            defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || [],
-        })
-    )
-}
-
 module.exports = environment
