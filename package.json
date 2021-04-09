@@ -2,7 +2,7 @@
   "name": "twi-hai-ranker2",
   "private": true,
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^4.0.3",
+    "@fullhuman/postcss-purgecss": "3.0.0",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
