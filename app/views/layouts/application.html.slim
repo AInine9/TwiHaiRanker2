@@ -1,12 +1,16 @@
 doctype html
-html
+html.max-w-7xl.mx-auto
   head
     title
-      | TwiHaiRanker2
+      | ツイ廃ランカー
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = yield
+    div#wrapper
+      = render "shared/header"
+      div#container
+        = yield
+      = render "shared/footer"

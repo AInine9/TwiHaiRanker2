@@ -1,5 +1,8 @@
-header.header
-  - if logged_in?
-    = link_to 'ログアウト', logout_path
-  - else
-    = link_to "Connect Twitter", "/auth/twitter", method: :post
+div.min-h-full.mx-auto.py-6.px-4.sm:px-6.lg:px-8.text-xl.font-sans
+  div.text-center.py-6 あなたのツイ廃度数を測ります
+  div.text-center
+    button.bg-blue-200.hover:bg-blue-500.font-bold.rounded.sm:px-6
+      - if logged_in?
+        = link_to "ログアウト", logout_path
+      - else
+        = link_to "ログイン", "/auth/twitter", method: :post
