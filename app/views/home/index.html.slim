@@ -6,7 +6,6 @@ div.py-6.px-4.sm:px-6.lg:px-8.text-xl.font-sans
         = link_to "ログアウト", logout_path
       - else
         = link_to "ログイン", "/auth/twitter", method: :post
-
+    - if logged_in?
       div
-        - if logged_in?
-          span 1日あたりのツイート数: #{current_user.ranking.tweetsperday}
+        span 1日あたりのツイート数: #{current_user.ranking.tweetsperday}
