@@ -1,4 +1,4 @@
-div.min-h-full.mx-auto.py-6.px-4.sm:px-6.lg:px-8.text-xl.font-sans
+div.py-6.px-4.sm:px-6.lg:px-8.text-xl.font-sans
   div.text-center.py-6 あなたのツイ廃度数を測ります
   div.text-center
     button.bg-blue-200.hover:bg-blue-500.font-bold.rounded.sm:px-6
@@ -6,3 +6,7 @@ div.min-h-full.mx-auto.py-6.px-4.sm:px-6.lg:px-8.text-xl.font-sans
         = link_to "ログアウト", logout_path
       - else
         = link_to "ログイン", "/auth/twitter", method: :post
+
+    div
+      - if logged_in?
+        span 1日あたりのツイート数: #{current_user.ranking.tweetsperday}

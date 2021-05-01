@@ -9,8 +9,9 @@ html.max-w-7xl.mx-auto
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    div#wrapper
-      = render "shared/header"
-      div#container
+    div.wrapper
+      =  render "shared/header"
+      div.container
+        = render "shared/notification"
         = yield
       = render "shared/footer"

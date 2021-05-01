@@ -11,6 +11,9 @@ class SessionsController < ApplicationController
     if user
       log_in user
       flash[:success] = 'ログインしました'
+
+      refresh_rank(user)
+
       redirect_to root_url
     else
       new_user = User.new(
@@ -20,12 +23,15 @@ class SessionsController < ApplicationController
         statuses_count: user_data[:extra][:raw_info][:statuses_count],
         registered_at: Date.parse(user_data[:extra][:raw_info][:created_at])
       )
-      if new_user.save
+      if new_user.save!
         log_in new_user
         flash[:success] = 'ユーザー登録成功'
+
+        create_rank(new_user)
       else
         flash[:danger] = '予期せぬエラーが発生しました'
       end
+
       redirect_to root_url
     end
   end
@@ -34,5 +40,30 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     flash[:success] = 'ログアウトしました'
     redirect_to root_url
+  end
+
+  private
+
+  def create_rank(user)
+    ranking = (user.statuses_count.to_f / (Date.today - user.registered_at.to_date)).round(2)
+    new_rank = Ranking.new(
+      uid: user.uid,
+      tweetsperday: ranking.to_s
+    )
+    if new_rank.save!
+      flash[:success] = 'ランキングを登録しました'
+    else
+      flash[:danger] = '予期せぬエラーが発生しました'
+    end
+  end
+
+  def refresh_rank(user)
+    rank = Ranking.find_by(uid: user.uid)
+    ranking = (user.statuses_count.to_f / (Date.today - user.registered_at.to_date)).round(2)
+    if rank.update(tweetsperday: ranking)
+      flash[:success] = 'ランキングを更新しました'
+    else
+      flash[:danger] = '予期せぬエラーが発生しました'
+    end
   end
 end
