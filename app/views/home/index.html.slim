@@ -7,6 +7,6 @@ div.py-6.px-4.sm:px-6.lg:px-8.text-xl.font-sans
       - else
         = link_to "ログイン", "/auth/twitter", method: :post
 
-    div
-      - if logged_in?
-        span 1日あたりのツイート数: #{current_user.ranking.tweetsperday}
+      div
+        - if logged_in?
+          span 1日あたりのツイート数: #{current_user.ranking.tweetsperday}
