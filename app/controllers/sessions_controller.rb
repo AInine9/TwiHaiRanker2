@@ -58,10 +58,14 @@ class SessionsController < ApplicationController
   end
 
   def refresh_rank(user)
-    rank = Ranking.find_by(uid: user.uid)
     ranking = (user.statuses_count.to_f / (Date.today - user.registered_at.to_date)).round(2)
-    if rank.update(tweetsperday: ranking)
-      flash[:success] = 'ランキングを更新しました'
+    rank = Ranking.find_by(uid: user.uid)
+    if rank
+      if rank.update(tweetsperday: ranking)
+        flash[:success] = 'ランキングを更新しました'
+      else
+        flash[:danger] = '予期せぬエラーが発生しました'
+      end
     else
       flash[:danger] = '予期せぬエラーが発生しました'
     end
