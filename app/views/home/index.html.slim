@@ -7,5 +7,27 @@ div.py-6.px-4.sm:px-6.lg:px-8.text-xl.font-sans
       - else
         = link_to "ログイン", "/auth/twitter", method: :post
     - if logged_in?
-      div
+      div.py-6
         span 1日あたりのツイート数: #{current_user.ranking.tweetsperday}
+
+    div.md:py-32.py-8.w-full
+      div.shadow.overflow-hidden.rounded.border-b.border-gray-200
+        table.min-w-full.bg-white
+          thead.bg-gray-800.text-white
+            tr
+              th.text-left.py-3.px-4.uppercase.font-semibold.text-sm
+                | ランキング
+              th.text-left.py-3.px-4.uppercase.font-semibold.text-sm
+                | 名前
+              th.text-left.py-3.px-4.uppercase.font-semibold.text-sm
+                | tweets/day
+          tbody.text-gray-700
+            - @ranking.each_with_index do |value, i|
+              tr
+                td.text-left.py-3.px-4
+                  | ##{i + 1}
+                td.text-left.py-3.px-4
+                  | #{@users.find_by(uid: value.uid).name}
+                td.text-left.py-3.px-4
+                  | #{value.tweetsperday}
+              - break if i == 4
