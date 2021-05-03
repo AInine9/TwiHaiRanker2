@@ -8,7 +8,8 @@ div.py-6.px-4.sm:px-6.lg:px-8.text-xl.font-sans
         = link_to "ログイン", "/auth/twitter", method: :post
     - if logged_in?
       div.py-6
-        span 1日あたりのツイート数: #{current_user.ranking.tweetsperday}
+        p 1日あたりのツイート数: #{current_user.ranking.tweetsperday}
+        p #{@ranking.find_index { |value| value.tweetsperday == current_user.ranking.tweetsperday} + 1}/#{@ranking.size}位
 
     div.md:py-32.py-8.w-full
       div.shadow.overflow-hidden.rounded.border-b.border-gray-200
