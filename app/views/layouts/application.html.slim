@@ -9,7 +9,7 @@ html.max-w-7xl.mx-auto
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     - if Rails.env.production?
-      = render 'layouts/google_analytics'
+      = render 'shared/google_analytics'
   body
     div.wrapper
       = render "shared/header"
