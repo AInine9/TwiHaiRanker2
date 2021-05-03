@@ -53,7 +53,7 @@ class SessionsController < ApplicationController
     ranking = (user.statuses_count.to_f / (Date.today - user.registered_at.to_date)).round(2)
     new_rank = Ranking.new(
       uid: user.uid,
-      tweetsperday: ranking.to_s
+      tweetsperday: ranking
     )
     if new_rank.save
       true
